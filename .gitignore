@@ -11,5 +11,4 @@ node_modules/
 *.tmp
 .env
 # Local Netlify folder
-.netlify
 build
