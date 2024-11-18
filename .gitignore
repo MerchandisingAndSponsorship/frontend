@@ -10,3 +10,5 @@ node_modules/
 *.swp
 *.tmp
 .env
+# Local Netlify folder
+.netlify
