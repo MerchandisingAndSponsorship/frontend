@@ -54,7 +54,10 @@ export default function CartList({ cart, setCart }) {
             <React.Fragment key={`${each.p_id}-${each.p_size}-${each.p_color}`}>
               <ListItem alignItems="flex-start">
                 <ListItemAvatar>
-                  <Avatar alt={each.p_name} src={each.p_img[0]} />
+                  <Avatar
+                    alt={each.p_name}
+                    src={each.p_color === "Red/Black" ? each.p_img[3] : each.p_img[0]}
+                  />
                 </ListItemAvatar>
                 <ListItemText
                   primary={
