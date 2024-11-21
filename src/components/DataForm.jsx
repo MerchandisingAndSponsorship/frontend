@@ -17,10 +17,10 @@ const validationSchemaSignUp = Yup.object({
   Section: Yup.string()
     .oneOf(['A', 'B', 'C', 'D', 'E', 'F', 'Not Applicable'], 'Invalid Section')
     .default('Not Applicable'),
-  Roll_Number: Yup.string()
+    Roll_Number: Yup.string()
     .matches(
-      /^(MBA\/09\/\d{3}|MBA\/BA03\/\d{3}|MBA\/HR03\/\d{3}|MBA\/10\/\d{3}|MBA\/BA04\/\d{3}|MBA\/HR04\/\d{3}|MSDSM\/01\/\d{3}|Not Applicable)$/,
-      'Roll number must match MBA/___/___ formats'
+      /^(MBA\/09\/\d{3}|MBA\/BA03\/\d{3}|MBA\/HR03\/\d{3}|MBA\/10\/\d{3}|MBA\/BA04\/\d{3}|MBA\/HR04\/\d{3}|MSDSM\/01\/\d{3}|PhD\/0_\d\/\d{3}|Not Applicable)$/,
+      'Roll number must match MBA/___/___ formats, MSDSM/___/___, PhD/0_/___, or "Not Applicable"'
     )
     .default('Not Applicable'),
   Hostel: Yup.string()
