@@ -28,13 +28,13 @@ const CardComponent = ({ p_id, p_img, p_name, p_price, size_available, color_ava
       axios.get(`${process.env.REACT_APP_API_URL}/api/admin/products/${p_id}/sizes`, {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then((response) => {
-        const sortedSizes = response.data.sizes.sort((a, b) => {
-          return sizeOrder.indexOf(a) - sizeOrder.indexOf(b);
-        });
-        setSizes(sortedSizes);
-      })
-      .catch((error) => console.error(`Error fetching sizes for product ${p_id}:`, error));
+        .then((response) => {
+          const sortedSizes = response.data.sizes.sort((a, b) => {
+            return sizeOrder.indexOf(a) - sizeOrder.indexOf(b);
+          });
+          setSizes(sortedSizes);
+        })
+        .catch((error) => console.error(`Error fetching sizes for product ${p_id}:`, error));
     } else {
       setSelectedSize(true); // Set to true if size is not required
     }
@@ -44,14 +44,14 @@ const CardComponent = ({ p_id, p_img, p_name, p_price, size_available, color_ava
       axios.get(`${process.env.REACT_APP_API_URL}/api/admin/products/${p_id}/colors`, {
         headers: { Authorization: `Bearer ${token}` },
       })
-      .then((response) => {
-        const fetchedColors = response.data.colors;
-        setColors(fetchedColors);
-        if (fetchedColors.length === 0) {
-          setSelectedColor(true); // Set to true if no colors are returned
-        }
-      })
-      .catch((error) => console.error(`Error fetching colors for product ${p_id}:`, error));
+        .then((response) => {
+          const fetchedColors = response.data.colors;
+          setColors(fetchedColors);
+          if (fetchedColors.length === 0) {
+            setSelectedColor(true); // Set to true if no colors are returned
+          }
+        })
+        .catch((error) => console.error(`Error fetching colors for product ${p_id}:`, error));
     } else {
       setSelectedColor(true); // Set to true if color is not required
     }
@@ -74,7 +74,7 @@ const CardComponent = ({ p_id, p_img, p_name, p_price, size_available, color_ava
   };
 
   const handleCustomNameChange = (event) => {
-    const name = event.target.value;
+    const name = event.target.value.toUpperCase();
     if (name.length <= 10) {
       setCustomName(name);
       setNameError(false);
@@ -173,7 +173,7 @@ const CardComponent = ({ p_id, p_img, p_name, p_price, size_available, color_ava
               placeholder="Max 10 characters"
               variant="outlined"
               fullWidth
-              inputProps={{ maxLength: 10 }}
+              inputProps={{ maxLength: 10, style: { textTransform: 'uppercase' } }} // Add textTransform here
             />
             {nameError && <Alert severity="warning">Name cannot exceed 10 characters.</Alert>}
           </Box>
